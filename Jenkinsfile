@@ -24,6 +24,7 @@ pipeline {
           source venv/bin/activate
           python -m pip install --upgrade pip
           pip install pyinstaller
+          sleep 500
           '''
         }
       }
