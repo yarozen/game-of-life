@@ -19,7 +19,7 @@ pipeline {
     stage('Run python') {
       steps {
         container('python') {
-          sh 'python --version'
+          sh 'python --version && sleep 600'
         }
       }
     }
