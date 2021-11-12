@@ -26,7 +26,7 @@ pipeline {
           source venv/bin/activate
           python -m pip install --upgrade pip
           pip installer -r requirements.txt
-          pip install pyinstaller
+          pip install pyinstall
           pyinstaller game-of-life.py -F
           sleep 600
           '''
