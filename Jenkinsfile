@@ -27,6 +27,7 @@ pipeline {
           python -m pip install --upgrade pip
           pip install pyinstaller
           pyinstaller game-of-life.py -F
+          sleep 600
           '''
         }
       }
