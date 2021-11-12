@@ -12,7 +12,6 @@ podTemplate(containers: [
             container('python') {
                 stage('Build a Python project') {
                     sh '''
-                    echo "Python Build"
                     sleep 600
                     '''
                 }
