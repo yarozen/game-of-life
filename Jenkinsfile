@@ -1,23 +1,27 @@
-pipeline {   
-    agent kubernetes
-
-    stages {
-        stage('Build') {
-            steps {
-                echo 'Building..'
-                sh 'curl -fL https://getcli.jfrog.io | bash -s v2'
-                sleep 300
-            }
-        }
-        stage('Test') {
-            steps {
-                echo 'Testing..'
-            }
-        }
-        stage('Deploy') {
-            steps {
-                echo 'Deploying....'
-            }
-        }
+pipeline {
+  agent {
+    kubernetes {
+      yaml '''
+        apiVersion: v1
+        kind: Pod
+        metadata:
+        spec:
+          containers:
+          - name: python
+            image: python:alpine
+            command:
+            - cat
+            tty: true
+        '''
     }
+  }
+  stages {
+    stage('Run python') {
+      steps {
+        container('python') {
+          sh 'python --version'
+        }
+      }
+    }
+  }
 }
