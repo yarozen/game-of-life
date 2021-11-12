@@ -1,23 +1,23 @@
-pipeline {   
-    agent any
+podTemplate(containers: [
+    containerTemplate(
+        name: 'python', 
+        image: 'python:latest', 
+        command: 'sleep', 
+        args: '30d')
+  ]) {
 
-    stages {
-        stage('Build') {
-            steps {
-                echo 'Building..'
-                sh 'curl -fL https://getcli.jfrog.io | bash -s v2'
-                sleep 302
+    node(POD_LABEL) {
+        stage('Get a Python Project') {
+            git url: 'https://github.com/yarozen/game-of-life.git', branch: 'main'
+            container('python') {
+                stage('Build a Python project') {
+                    sh '''
+                    echo "Python Build"
+                    sleep 600
+                    '''
+                }
             }
         }
-        stage('Test') {
-            steps {
-                echo 'Testing..'
-            }
-        }
-        stage('Deploy') {
-            steps {
-                echo 'Deploying....'
-            }
-        }
+
     }
 }
