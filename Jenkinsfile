@@ -8,6 +8,7 @@ podTemplate(label: label, containers: [
     stage('Build') {
       container('python') {
         sh "python build"
+        sh "sleep 300"
       }
     }
   }
