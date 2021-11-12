@@ -6,10 +6,8 @@ podTemplate(label: label, containers: [
 ]) {
   node(label) {
     stage('Build') {
-      container('python') {
         sh "echo 'python build'"
         sh "sleep 300"
-      }
     }
   }
 }
