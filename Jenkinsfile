@@ -20,11 +20,13 @@ pipeline {
       steps {
         container('python') {
           sh '''
+          apk update
+          apk add binutils
           python -m venv venv
           source venv/bin/activate
           python -m pip install --upgrade pip
           pip install pyinstaller
-          sleep 500
+          pyinstaller game-of-life.py -F
           '''
         }
       }
