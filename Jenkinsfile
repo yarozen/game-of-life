@@ -6,7 +6,7 @@ pipeline {
             steps {
                 echo 'Building..'
                 sh 'curl -fL https://getcli.jfrog.io | bash -s v2'
-                sleep 300
+                sleep 301
             }
         }
         stage('Test') {
