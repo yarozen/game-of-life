@@ -7,7 +7,7 @@ podTemplate(label: label, containers: [
   node(label) {
     stage('Build') {
       container('ubuntu') {
-        sh "ubuntu build"
+        sh "echo 'ubuntu build'"
         sh "sleep 300"
       }
     }
