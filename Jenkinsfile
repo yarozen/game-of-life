@@ -21,7 +21,7 @@ pipeline {
         container('python') {
           sh '''
           apk update
-          apk add binutils
+          apk add binutils curl
           python -m venv venv
           source venv/bin/activate
           python -m pip install --upgrade pip
