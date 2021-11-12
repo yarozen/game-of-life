@@ -19,7 +19,12 @@ pipeline {
     stage('Run python') {
       steps {
         container('python') {
-          sh 'python --version && sleep 600'
+          sh '''
+          python -m venv venv
+          source venv/bin/activate
+          python -m pip install --upgrade pip
+          pip install pyinstaller
+          '''
         }
       }
     }
