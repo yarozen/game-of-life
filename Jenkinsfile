@@ -1,22 +1,23 @@
-podTemplate(containers: [
-    containerTemplate(
-        name: 'python', 
-        image: 'python:latest', 
-        command: 'sleep', 
-        args: '30d')
-  ]) {
+pipeline {   
+    agent kubernetes
 
-    node(POD_LABEL) {
-        stage('Get a Python Project') {
-            git url: 'https://github.com/yarozen/game-of-life.git', branch: 'main'
-            container('python') {
-                stage('Build a Python project') {
-                    sh '''
-                    sleep 600
-                    '''
-                }
+    stages {
+        stage('Build') {
+            steps {
+                echo 'Building..'
+                sh 'curl -fL https://getcli.jfrog.io | bash -s v2'
+                sleep 300
             }
         }
-
+        stage('Test') {
+            steps {
+                echo 'Testing..'
+            }
+        }
+        stage('Deploy') {
+            steps {
+                echo 'Deploying....'
+            }
+        }
     }
 }
