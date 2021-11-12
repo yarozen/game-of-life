@@ -1,13 +1,23 @@
-def label = "worker-${UUID.randomUUID().toString()}"
+pipeline {   
+    agent any
 
-
-podTemplate(label: label, containers: [
-  containerTemplate(name: 'python', image: 'python:alpine', command: 'cat', ttyEnabled: true)
-]) {
-  node(label) {
-    stage('Build') {
-        sh "echo 'python build'"
-        sh "sleep 300"
+    stages {
+        stage('Build') {
+            steps {
+                echo 'Building..'
+                sh 'curl -fL https://getcli.jfrog.io | bash -s v2'
+                sleep 300
+            }
+        }
+        stage('Test') {
+            steps {
+                echo 'Testing..'
+            }
+        }
+        stage('Deploy') {
+            steps {
+                echo 'Deploying....'
+            }
+        }
     }
-  }
 }
